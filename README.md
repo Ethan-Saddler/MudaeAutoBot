@@ -1,26 +1,5 @@
-Please Gif Star ?? Stars make me happy.  I'm open to design automation for other games (doesn't have to be a discord game) just let me know
-# Regading Forking
-I have seen many users fork this repo. I do not mind forks but I really would like to state that github is a public space and that any user who forks this repo is ultimatly can be found by all the various users that frequent this repo. 
-
-!!!!!!! IF YOU FORK THIS REPO PLEASE DO NOT PUSH A COMMIT WITH YOUR DISCORD USER TOKEN !!!!!!
-
-I personally have tried to email users that I have found that posted their token
- >>> If you have posted your token Please delete said fork and just refork this repo github has a histroy of commits and I can find your token if its posted so again I would like to state
-
-!!!!!!! IF YOU FORK THIS REPO PLEASE DO NOT PUSH A COMMIT WITH YOUR DISCORD USER TOKEN !!!!!!
-
-
-# Regarding Issue Creation
-Lately I have been getting alot of **Issues** that is not based on problems with the bot but they regard `Python Enviroment Errors` I.E `discum module not found`/`discum not installed properly` I have attempted to help many users that have had this problem but it is very time consuming. Python Enviroment issues are not a problem with the **BOT** but how one has installed python this varies from user to user.There are archived issues where a user has had a enviroment issue and they have resolved it you can use that as a reference.
-If these resources do not help there are plently of resources online to help you resolve your `Python Enviroment` Issue
-
-
-`FAQS`
-+ CMD closes instantly - Open with IDLE and run it and it should give you the reason that it closed
-+ JSON load error - https://jsonformatter.curiousconcept.com/# copy and paste your json file into the textbox and click validate
-+ Does it have `gateway` log data ? - Your using older version of Dis.c.u.m refer to their github: https://github.com/Merubokkusu/Discord-S.C.U.M
-+ How is bot suppose to look like in normal state - 
-![image](https://user-images.githubusercontent.com/33008397/123542012-47927e00-d715-11eb-9bf9-26c78a9721d7.png)
+# This Fork
++ this fork's main goal is to work on some personal changes that I prefer with the bot and I figured there may be others who like them
 
 + Claims / Bot didn't claim X character - Please make sure you have checked if the `bot has not claimed already within the claim window` , or that `someone else did not already claim X character before the snipe protection has expired`
 
