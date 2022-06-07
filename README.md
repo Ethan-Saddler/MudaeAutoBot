@@ -1,9 +1,6 @@
 # This Fork
 + this fork's main goal is to work on some personal changes that I prefer with the bot and I figured there may be others who like them
-
-+ Claims / Bot didn't claim X character - Please make sure you have checked if the `bot has not claimed already within the claim window` , or that `someone else did not already claim X character before the snipe protection has expired`
-
-**Future Issues opened that do NOT deal with a Error with the BOT will be labeled accordingly and closed**
++ these issues include: claiming after already having claimed, issues with last minute claims and some other things.
 
 # MudaeAutoBot
 MudaeAutoBot is a python bot that auto rolls and attempts to snipe Kakeras and Claims in Mudae
@@ -63,14 +60,5 @@ a minimum of 1 second to let mudae register that a character was rolled as is re
 # Use at your own Risk
 This is a Discord **selfbot**. I am not responsible if you get banned using this program. 
 
-# Closing Notes
-I understand that this readme is not as detailed as many would like and I'm sure there are many more questions that one may have.
 
-Currently I'm still supporting this repo so feel free to **Contact Me** if you are having any Issues (Setup , Bugs , Feature suggestions)
-
-As for updates those will be added up until I no longer feel like this project is fun.
-
-Thanks to:
-https://github.com/FatPain
-for Assisting with Discum it was definitly not something I'm use to
 
