@@ -194,7 +194,7 @@ def get_server_settings(guild_id,channel_id):
                 · Rolls per hour: **10** ($setrolls)
                 · Time before the claim reaction expires: **30** sec. ($settimer)
                 · Spawn rarity multiplicator for already claimed characters: **2** ($setrare)
-                · Server game mode: **1** ($gamemode)
+                · Server game mode: **1** ($gamemode) 
                 · This channel instance: **1** ($channelinstance)
                 · Slash commands: enabled ($toggleslash)
 
@@ -504,87 +504,103 @@ def on_message(resp):
                 # confirmed user roll
                 c_settings['rolls'] += 1
             
-            if waifu_wall.get(channelid,0) != next_claim(channelid)[0]:
-                snipe_delay = get_snipe_time(int(channelid),roller,content)
-                charpop = m['embeds'][0]
-                charname = charpop["author"]["name"]
-                chardes = charpop["description"]
-                charcolor = int(charpop['color'])
+            # if waifu_wall.get(channelid,0) != next_claim(channelid)[0]:
+            snipe_delay = get_snipe_time(int(channelid),roller,content)
+            charpop = m['embeds'][0]
+            charname = charpop["author"]["name"]
+            chardes = charpop["description"]
+            charcolor = int(charpop['color'])
 
-                if str(user['id']) in content:
-                    logger.info(f"Wished {charname} from {get_serial(chardes)} with {get_kak(chardes)} Value in Server id:{guildid}")
-                    snipe(recv,snipe_delay)
-                    if msg_buf[messageid]['claimed']:
-                        return
-                    m_reacts = bot.getMessage(channelid, messageid).json()[0]
-                    snipe_intent(m,m_reacts,butts)
-                    # if "reactions" in m_reacts:
-                        # if m_reacts["reactions"][0]["emoji"]['id'] == None:
-                            # bot.addReaction(channelid, messageid, m_reacts["reactions"][0]["emoji"]["name"])
-                        # elif m_reacts["reactions"][0]["emoji"]['id'] != None and "kakera" not in m_reacts["reactions"][0]["emoji"]["name"]:
-                            # cust_emoji_sen = m_reacts["reactions"][0]["emoji"]["name"] + ":" + m_reacts["reactions"][0]["emoji"]['id']
-                            # bot.addReaction(channelid, messageid, cust_emoji_sen)
-                    # elif butts.components != [] :
-                        # buttMoji = butts.components[0]["components"][0]["emoji"]["name"]
-                        # if "kakera" not in buttMoji:
-                            # bot.click(
-                                        # aId,
-                                        # channelID=m["channel_id"],
-                                        # guildID=m.get("guild_id"),
-                                        # messageID=m["id"],
-                                        # messageFlags=m["flags"],
-                                        # data=butts.getButton(emojiName=buttMoji),
-                                        # )  
-                    # else:
-                        # bot.addReaction(channelid, messageid, "❤")
+            if str(user['id']) in content:
+                logger.info(f"Wished {charname} from {get_serial(chardes)} with {get_kak(chardes)} Value in Server id:{guildid}")
+                snipe(recv,snipe_delay)
+                if msg_buf[messageid]['claimed']:
+                    return
+                m_reacts = bot.getMessage(channelid, messageid).json()[0]
+                snipe_intent(m,m_reacts,butts)
+                # if "reactions" in m_reacts:
+                    # if m_reacts["reactions"][0]["emoji"]['id'] == None:
+                        # bot.addReaction(channelid, messageid, m_reacts["reactions"][0]["emoji"]["name"])
+                    # elif m_reacts["reactions"][0]["emoji"]['id'] != None and "kakera" not in m_reacts["reactions"][0]["emoji"]["name"]:
+                        # cust_emoji_sen = m_reacts["reactions"][0]["emoji"]["name"] + ":" + m_reacts["reactions"][0]["emoji"]['id']
+                        # bot.addReaction(channelid, messageid, cust_emoji_sen)
+                # elif butts.components != [] :
+                    # buttMoji = butts.components[0]["components"][0]["emoji"]["name"]
+                    # if "kakera" not in buttMoji:
+                        # bot.click(
+                                    # aId,
+                                    # channelID=m["channel_id"],
+                                    # guildID=m.get("guild_id"),
+                                    # messageID=m["id"],
+                                    # messageFlags=m["flags"],
+                                    # data=butts.getButton(emojiName=buttMoji),
+                                    # )  
+                # else:
+                    # bot.addReaction(channelid, messageid, "❤")
+            
+            if charname.lower() in chars:
                 
-                if charname.lower() in chars:
+                logger.info(f"{charname} appeared attempting to Snipe Server id:{guildid}")
+                snipe(recv,snipe_delay)
+                if msg_buf[messageid]['claimed']:
+                    return
+                m_reacts = bot.getMessage(channelid, messageid).json()[0]
+                snipe_intent(m,m_reacts,butts)
+            
+            for ser in series_list:
+                if ser in chardes and charcolor == 16751916:
                     
-                    logger.info(f"{charname} appeared attempting to Snipe Server id:{guildid}")
+                    
+                    logger.info(f"{charname} from {ser} appeared attempting to snipe in {guildid}")
+                    snipe(recv,snipe_delay)
+                    if msg_buf[messageid]['claimed']:
+                        return
+                    m_reacts = bot.getMessage(channelid, messageid).json()[0]
+                    if "reactions" in m_reacts:
+                        if m_reacts["reactions"][0]["emoji"]['id'] == None:
+                            bot.addReaction(channelid, messageid, m_reacts["reactions"][0]["emoji"]["name"])
+                            break
+                        elif m_reacts["reactions"][0]["emoji"]['id'] != None and "kakera" not in m_reacts["reactions"][0]["emoji"]["name"]:
+                            cust_emoji_sen = m_reacts["reactions"][0]["emoji"]["name"] + ":" + m_reacts["reactions"][0]["emoji"]['id']
+                            bot.addReaction(channelid, messageid, cust_emoji_sen)
+                            break
+                    elif butts.components != [] :
+                        buttMoji = butts.components[0]["components"][0]["emoji"]["name"]
+                        if "kakera" not in buttMoji:
+                                bot.click(
+                                    aId,
+                                    channelID=m["channel_id"],
+                                    guildID=m.get("guild_id"),
+                                    messageID=m["id"],
+                                    messageFlags=m["flags"],
+                                    data=butts.getButton(emojiName=buttMoji),
+                                    ) 
+                        break
+    
+                    else:
+                        bot.addReaction(channelid, messageid, "❤")
+                        break
+
+            if "<:kakera:469835869059153940>" in chardes or "Claims:" in chardes or "Likes:" in chardes:
+                #det_time = time.time()
+                kak_value = get_kak(chardes)
+                if int(kak_value) >= kak_min and charcolor == 16751916:
+                    
+                    
+                    logger.info(f"{charname} with a {kak_value} Kakera Value appeared Server:{guildid}")
                     snipe(recv,snipe_delay)
                     if msg_buf[messageid]['claimed']:
                         return
                     m_reacts = bot.getMessage(channelid, messageid).json()[0]
                     snipe_intent(m,m_reacts,butts)
-                
-                for ser in series_list:
-                    if ser in chardes and charcolor == 16751916:
-                        
-                        
-                        logger.info(f"{charname} from {ser} appeared attempting to snipe in {guildid}")
-                        snipe(recv,snipe_delay)
-                        if msg_buf[messageid]['claimed']:
-                            return
-                        m_reacts = bot.getMessage(channelid, messageid).json()[0]
-                        if "reactions" in m_reacts:
-                            if m_reacts["reactions"][0]["emoji"]['id'] == None:
-                                bot.addReaction(channelid, messageid, m_reacts["reactions"][0]["emoji"]["name"])
-                                break
-                            elif m_reacts["reactions"][0]["emoji"]['id'] != None and "kakera" not in m_reacts["reactions"][0]["emoji"]["name"]:
-                                cust_emoji_sen = m_reacts["reactions"][0]["emoji"]["name"] + ":" + m_reacts["reactions"][0]["emoji"]['id']
-                                bot.addReaction(channelid, messageid, cust_emoji_sen)
-                                break
-                        elif butts.components != [] :
-                            buttMoji = butts.components[0]["components"][0]["emoji"]["name"]
-                            if "kakera" not in buttMoji:
-                                    bot.click(
-                                        aId,
-                                        channelID=m["channel_id"],
-                                        guildID=m.get("guild_id"),
-                                        messageID=m["id"],
-                                        messageFlags=m["flags"],
-                                        data=butts.getButton(emojiName=buttMoji),
-                                        ) 
-                            break
-        
-                        else:
-                            bot.addReaction(channelid, messageid, "❤")
-                            break
-
+                    #print(f"took this much {time.time() - det_time}")
+            
+            if is_last_enable and next_claim(channelid)[1] - time.time() < (60 * last_claim_window):
                 if "<:kakera:469835869059153940>" in chardes or "Claims:" in chardes or "Likes:" in chardes:
                     #det_time = time.time()
+                    print(f"Last Minute Claim was attempted")
                     kak_value = get_kak(chardes)
-                    if int(kak_value) >= kak_min and charcolor == 16751916:
+                    if int(kak_value) >= min_kak_last and charcolor == 16751916:
                         
                         
                         logger.info(f"{charname} with a {kak_value} Kakera Value appeared Server:{guildid}")
@@ -594,26 +610,10 @@ def on_message(resp):
                         m_reacts = bot.getMessage(channelid, messageid).json()[0]
                         snipe_intent(m,m_reacts,butts)
                         #print(f"took this much {time.time() - det_time}")
-                
-                if is_last_enable and next_claim(channelid)[1] - time.time() < (60 * last_claim_window):
-                    if "<:kakera:469835869059153940>" in chardes or "Claims:" in chardes or "Likes:" in chardes:
-                        #det_time = time.time()
-                        print(f"Last Minute Claim was attempted")
-                        kak_value = get_kak(chardes)
-                        if int(kak_value) >= min_kak_last and charcolor == 16751916:
-                            
-                            
-                            logger.info(f"{charname} with a {kak_value} Kakera Value appeared Server:{guildid}")
-                            snipe(recv,snipe_delay)
-                            if msg_buf[messageid]['claimed']:
-                                return
-                            m_reacts = bot.getMessage(channelid, messageid).json()[0]
-                            snipe_intent(m,m_reacts,butts)
-                            #print(f"took this much {time.time() - det_time}")
-                
-                
-                if str(user['id']) not in content and charname.lower() not in chars and get_serial(chardes) not in series_list and int(get_kak(chardes)) < kak_min:
-                    logger.debug(f"Ignoring {charname} from {get_serial(chardes)} with {get_kak(chardes)} Kakera Value in Server id:{guildid}")
+            
+            
+            if str(user['id']) not in content and charname.lower() not in chars and get_serial(chardes) not in series_list and int(get_kak(chardes)) < kak_min:
+                logger.debug(f"Ignoring {charname} from {get_serial(chardes)} with {get_kak(chardes)} Kakera Value in Server id:{guildid}")
                     
     if resp.event.message_updated:
         # Handle claims
