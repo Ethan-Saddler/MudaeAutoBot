@@ -1,4 +1,4 @@
-# This Fork
+# Fork
 + this fork's main goal is to work on some personal changes that I prefer with the bot and I figured there may be others who like them
 + these issues include: claiming after already having claimed, issues with last minute claims and some other things.
 
